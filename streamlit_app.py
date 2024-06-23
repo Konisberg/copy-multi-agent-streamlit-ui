@@ -24,7 +24,7 @@ from camel.types import ModelType
 from apps.streamlit_ui.multi_agent_communication_ui import main
 
 # Set the title for the Streamlit app
-st.title("🐫 CAMEL Multi-Agent")
+st.title("[MAS]Multi-Agent System")
 
 # Create a sidebar with form elements
 with st.sidebar:
@@ -59,7 +59,7 @@ with st.sidebar:
 
             # Create an instance of the OpenAI model
             my_openai_model = OpenAIModel(
-                model_type=ModelType.GPT_3_5_TURBO,
+                model_type=ModelType.GPT_4_TURBO,
                 model_config_dict=ChatGPTConfig().__dict__,
             )
 
@@ -119,9 +119,9 @@ with st.sidebar:
             )
         else:
             # Set default values for task prompt and context content
-            with open("examples/task_prompt_business_novel.txt", "r") as file:
+            with open("examples/task_prompt_paper.txt", "r") as file:
                 task_prompt_business_novel = file.read()
-            with open("examples/task_prompt_business_novel.txt", "r") as file:
+            with open("examples/context_paper.txt", "r") as file:
                 context_content_business_novel = file.read()
             task_prompt = st.text_area(
                 "Insert the task here", value=task_prompt_business_novel
@@ -147,7 +147,7 @@ if openai_api_key and task_prompt and context_text and submit_button:
         file.write("")
 
     # Call the 'main' function with the task prompt and context content
-    num_roles = 5  # num_roles could be null or a number
+    num_roles = 10  # num_roles could be null or a number
     main(
         task_prompt=task_prompt,
         context_text=context_text,
